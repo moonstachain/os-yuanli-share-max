@@ -44,6 +44,21 @@
 - **profiles**：6 档可选能力包（lite / engineer / content / yuanli-full / governance / lark-ops）
 - **CLI**：`os-yuanli-install-profile` 按档位一键装到 `~/.claude/skills/`
 
+### 🆕 2026-04-24 更新：Harness Patterns 四层基建
+
+从 [12 Agentic Harness Patterns (Claude Code)](https://generativeprogrammer.com/p/12-agentic-harness-patterns-from) 对标审计后落地的四个基础设施升级：
+
+| 优先级 | 升级 | 说明 |
+|---|---|---|
+| **P0** | 确定性治理钩子 | 3 个 lifecycle hooks（`SessionStart` / `PostToolUse:Agent` / `Stop`）把治理检查从 prompt 层下沉到系统层 |
+| **P1** | 上下文压缩协议 | 4 层信息衰减（锚点→决策→过程→噪声），长会话中治理链条不断裂 |
+| **P2** | 权限分级 | 4 级子agent权限（`read-only` / `plan-only` / `full` / `guarded`），最小权限路由 |
+| **P3** | 模式语言规范 | 每个 skill 用 `pattern_card`（problem / forces / solution / tradeoffs）标准描述 |
+
+新增文件：`scripts/governance_checkpoint.py`、`scripts/evolution_capture.py`、`scripts/session_governance_init.py`、`references/context-compaction-protocol.md`、`references/pattern-card-spec.md`
+
+---
+
 与普通 share 版的差异：
 
 | 维度 | `os-yuanli-skill-share` | `os-yuanli-share-max`（本仓库） |

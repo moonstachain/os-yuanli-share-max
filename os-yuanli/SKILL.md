@@ -316,13 +316,11 @@ See [references/integration-boundaries.md](references/integration-boundaries.md)
 - [references/audit-rubric.md](references/audit-rubric.md): 6-axis scoring model for system and task maturity
 - [references/system-audit-playbook.md](references/system-audit-playbook.md): high-order audit path for skill ecology, runtime, and operating-system reviews
 - [references/system-audit-feishu-loop.md](references/system-audit-feishu-loop.md): Feishu mirror, external benchmark layer, and recursion queue rules
+- [references/context-compaction-protocol.md](references/context-compaction-protocol.md): context compression protocol for long sessions — what to keep, what to compress, when to trigger
+- [references/pattern-card-spec.md](references/pattern-card-spec.md): pattern language spec for skills — problem/forces/solution/tradeoffs format and 5 exemplar cards
 
 ## Local Health Check
 
-```bash
-# From this repo root:
-python3 os-yuanli/scripts/doctor.py
-
-# Or after installing to ~/.claude/skills/ via install-profile:
-python3 ~/.claude/skills/os-yuanli/scripts/doctor.py
-```
+``bash
+python3 /Users/liming/.codex/skills/os-yuanli/scripts/doctor.py
+``
