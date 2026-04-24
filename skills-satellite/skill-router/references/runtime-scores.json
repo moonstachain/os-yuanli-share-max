@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "generated_at": "2026-04-21T15:38:23+08:00",
+  "source": "skill-bandit/scripts/score.py",
+  "skills": {
+    "knowledge-liming": {
+      "runtime_score": -1.5894,
+      "success_count": 0,
+      "failure_count": 1,
+      "last_success_at": null,
+      "last_invoked_at": "2026-04-18T09:28:02+08:00",
+      "deprecated": false
+    },
+    "os-yuanli": {
+      "runtime_score": 0.0,
+      "success_count": 0,
+      "failure_count": 0,
+      "last_success_at": null,
+      "last_invoked_at": "2026-04-19T14:08:35+08:00",
+      "deprecated": false
+    },
+    "update-config": {
+      "runtime_score": -0.7767,
+      "success_count": 0,
+      "failure_count": 1,
+      "last_success_at": null,
+      "last_invoked_at": "2026-04-17T21:44:49+08:00",
+      "deprecated": false
+    }
+  }
+}

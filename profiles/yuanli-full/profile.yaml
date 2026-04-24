@@ -1,0 +1,79 @@
+name: yuanli-full
+version: 0.1.0
+description: |
+  原力生态全套档：lite + 原力五大域 + 知识图谱 + Wiki adapter。
+  适合全盘迁移作者"治理OS×工作OS"的学员或者内部联盟成员。
+
+extends: lite
+
+external_skills:
+  # 原力五大域
+  - name: yuanli-core
+    source: "local:~/.claude/skills/yuanli-core"
+    notes: "原力本体"
+  - name: yuanli-knowledge
+    source: "local:~/.claude/skills/yuanli-knowledge"
+    notes: "原力知识图谱路由器"
+  - name: yuanli-status
+    source: "local:~/.claude/skills/yuanli-status"
+  - name: yuanli-geo
+    source: "local:~/.claude/skills/yuanli-geo"
+  - name: yuanli-ontology-manager
+    source: "local:~/.claude/skills/yuanli-ontology-manager"
+  - name: yuanli-design-sys-prompt
+    source: "local:~/.claude/skills/yuanli-design-sys-prompt"
+  - name: yuanli-xiaoshitou
+    source: "local:~/.claude/skills/yuanli-xiaoshitou"
+  - name: yuanli-zsxq-coevolution-assistant
+    source: "local:~/.claude/skills/yuanli-zsxq-coevolution-assistant"
+
+  # 知识层
+  - name: knowledge-liming
+    source: "local:~/.claude/skills/knowledge-liming"
+    notes: "跨项目只读 Wiki 通道"
+    requires: [WIKI_ROOT]
+  - name: knowledge-orchestrator
+    source: "local:~/.claude/skills/knowledge-orchestrator"
+  - name: llm-wiki-operator
+    source: "local:~/.claude/skills/llm-wiki-operator"
+    notes: "Wiki 内 CRUD，仅在 cwd 在 Wiki 内时可写"
+    requires: [WIKI_ROOT]
+
+  # 炼丹 / 切角
+  - name: jiyao-youyao-haiyao
+    source: "local:~/.claude/skills/jiyao-youyao-haiyao"
+  - name: info-5l
+    source: "local:~/.claude/skills/info-5l"
+  - name: brainstorming
+    source: "local:~/.claude/skills/brainstorming"
+
+  # AI 管家
+  - name: ai-da-guan-jia
+    source: "local:~/.claude/skills/ai-da-guan-jia"
+  - name: ai-da-guan-jia-prompt
+    source: "local:~/.claude/skills/ai-da-guan-jia-prompt"
+
+  # 反演产物
+  - name: reverse-engineer-product
+    source: "local:~/.claude/skills/reverse-engineer-product"
+  - name: cursor-plan-todo-execute
+    source: "local:~/.claude/skills/cursor-plan-todo-execute"
+
+wiki_required: true
+wiki_adapter: "profiles/yuanli-full/wiki-adapter.md"
+sample_wiki_path: "profiles/yuanli-full/sample-wiki"
+
+env_required:
+  - name: WIKI_ROOT
+    description: "学员自己的 Wiki 根目录绝对路径（示例：/Users/yourname/Documents/LLM-Wiki）"
+    optional: false
+  - name: WIKI_SCHEMA
+    description: "Wiki 宪法文件路径，默认 $WIKI_ROOT/_schema.md"
+    optional: true
+
+hooks_example: true
+restorability_vs_author: "~80%"
+notes: |
+  这是覆盖度最高的 profile。作者本机的 Wiki 有 ~593 concepts / 5700+ sources /
+  14 domains / 4-layer architecture。本 profile 提供样例 Wiki skeleton（profiles/yuanli-full/sample-wiki/）
+  让学员先跑起来，然后用 knowledge-liming / llm-wiki-operator 把自己的 Wiki 养起来。

@@ -1,0 +1,4124 @@
+{
+  "version": 1,
+  "generated_at": "2026-03-09T13:34:05.659260+00:00",
+  "source_registry": "portable-snapshot",
+  "inventory_summary": {
+    "semantic_skill_total": 106,
+    "high_priority_count": 11
+  },
+  "family_defaults": {
+    "agency-": {
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "recommended_priority": "P3"
+    },
+    "jiyao-": {
+      "best_trigger_intents": [
+        "需要少打扰、高自治、强执行的操作系统式协作"
+      ],
+      "avoid_trigger_intents": [
+        "轻任务或不需要自治强约束的请求"
+      ],
+      "recommended_priority": "P2"
+    },
+    "notion-": {
+      "best_trigger_intents": [
+        "Notion 工作流、文档、研究或规范落地"
+      ],
+      "avoid_trigger_intents": [
+        "与 Notion 无关的知识管理问题"
+      ],
+      "recommended_priority": "P2"
+    }
+  },
+  "high_priority_skills": [
+    "ai-ling-shou-core",
+    "closure-evolution",
+    "dify-workflow-engineer",
+    "evidence-gate",
+    "feishu-reader",
+    "github-feishu-sync",
+    "intent-grounding",
+    "openclaw-feishu-coach",
+    "playwright",
+    "skill-governance",
+    "skill-router"
+  ],
+  "skills": [
+    {
+      "canonical_name": "ai-ling-shou-core",
+      "status": "local+github",
+      "family": "core-organ",
+      "maturity": "stable",
+      "recommended_priority": "P0",
+      "best_trigger_intents": [
+        "需要先理解长期意图、技能治理和进化价值再执行的任务",
+        "用户显式提到 AI灵兽 或根层 operating system"
+      ],
+      "avoid_trigger_intents": [
+        "纯闲聊",
+        "单步小请求且没有治理价值"
+      ],
+      "upstream_entry_signals": [
+        "先别急着做",
+        "从全局看",
+        "帮我盘一下 skill 生态",
+        "这个要不要沉淀成 skill"
+      ],
+      "downstream_dependencies": [
+        "ai-metacognitive-core",
+        "skill-governance",
+        "intent-grounding",
+        "skill-router",
+        "evidence-gate",
+        "closure-evolution"
+      ],
+      "substitute_skills": [],
+      "routing_keywords": [
+        "灵兽",
+        "AI灵兽",
+        "进化",
+        "技能治理",
+        "高自治",
+        "根skill"
+      ]
+    },
+    {
+      "canonical_name": "closure-evolution",
+      "status": "local-only",
+      "family": "core-organ",
+      "maturity": "stable",
+      "recommended_priority": "P0",
+      "best_trigger_intents": [
+        "任务结束后判断是否值得沉淀为结构能力",
+        "把一次完成转成长期进化素材"
+      ],
+      "avoid_trigger_intents": [
+        "任务刚开始时的执行路径选择"
+      ],
+      "upstream_entry_signals": [
+        "收尾一下",
+        "这次值得沉淀什么",
+        "要不要晋升"
+      ],
+      "downstream_dependencies": [
+        "skill-governance"
+      ],
+      "substitute_skills": [
+        "evidence-gate"
+      ],
+      "routing_keywords": [
+        "收尾",
+        "晋升",
+        "沉淀",
+        "复盘",
+        "进化动作"
+      ]
+    },
+    {
+      "canonical_name": "dify-workflow-engineer",
+      "status": "local+github",
+      "family": "workflow",
+      "maturity": "usable",
+      "recommended_priority": "P0",
+      "best_trigger_intents": [
+        "把业务流程落成 Dify 应用",
+        "选择 Dify app type 并完成设计到部署"
+      ],
+      "avoid_trigger_intents": [
+        "纯 OpenClaw/飞书调教",
+        "与 Dify 无关的通用 no-code 咨询"
+      ],
+      "upstream_entry_signals": [
+        "做成 Dify",
+        "给我 DSL",
+        "帮我部署 Dify",
+        "这个该用 Workflow 还是 Agent"
+      ],
+      "downstream_dependencies": [
+        "openai-docs",
+        "playwright"
+      ],
+      "substitute_skills": [
+        "coze-workflow-operator"
+      ],
+      "routing_keywords": [
+        "Dify",
+        "工作流",
+        "Chatflow",
+        "Agent",
+        "DSL",
+        "发布",
+        "部署"
+      ]
+    },
+    {
+      "canonical_name": "evidence-gate",
+      "status": "local-only",
+      "family": "core-organ",
+      "maturity": "stable",
+      "recommended_priority": "P0",
+      "best_trigger_intents": [
+        "需要检查结果是否真实完成和可验证",
+        "任务收尾前做证据闸门"
+      ],
+      "avoid_trigger_intents": [
+        "前期发散 brainstorming"
+      ],
+      "upstream_entry_signals": [
+        "别先宣布成功",
+        "先验一下",
+        "有没有证据证明完成"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "closure-evolution"
+      ],
+      "routing_keywords": [
+        "验真",
+        "真完成",
+        "证据",
+        "closure gate",
+        "验收"
+      ]
+    },
+    {
+      "canonical_name": "feishu-reader",
+      "status": "local+github",
+      "family": "domain",
+      "maturity": "stable",
+      "recommended_priority": "P0",
+      "best_trigger_intents": [
+        "读取、导出、总结具体飞书链接内容",
+        "需要稳定访问飞书页面正文或结构"
+      ],
+      "avoid_trigger_intents": [
+        "OpenClaw 调教",
+        "不是飞书链接的普通网页读取"
+      ],
+      "upstream_entry_signals": [
+        "这是飞书链接",
+        "帮我读这个 doc",
+        "导出这个 wiki"
+      ],
+      "downstream_dependencies": [
+        "playwright"
+      ],
+      "substitute_skills": [
+        "openclaw-feishu-coach"
+      ],
+      "routing_keywords": [
+        "Feishu",
+        "Lark",
+        "飞书链接",
+        "wiki",
+        "doc",
+        "sheet",
+        "bitable"
+      ]
+    },
+    {
+      "canonical_name": "github-feishu-sync",
+      "status": "local+github",
+      "family": "workflow",
+      "maturity": "usable",
+      "recommended_priority": "P0",
+      "best_trigger_intents": [
+        "GitHub 仓库到飞书的结构化同步",
+        "仓库 inventory 和 skill pattern 分类"
+      ],
+      "avoid_trigger_intents": [
+        "单个 PR 评论处理",
+        "纯 GitHub CI 修复"
+      ],
+      "upstream_entry_signals": [
+        "GitHub 同步到飞书",
+        "repo inventory",
+        "Webhook 刷新"
+      ],
+      "downstream_dependencies": [
+        "feishu-reader",
+        "gh-address-comments"
+      ],
+      "substitute_skills": [
+        "feishu-reader"
+      ],
+      "routing_keywords": [
+        "GitHub",
+        "Feishu",
+        "同步",
+        "Bitable",
+        "Webhook",
+        "repo inventory"
+      ]
+    },
+    {
+      "canonical_name": "intent-grounding",
+      "status": "local-only",
+      "family": "core-organ",
+      "maturity": "stable",
+      "recommended_priority": "P0",
+      "best_trigger_intents": [
+        "任务目标模糊，需要先压实成功标准和边界",
+        "高风险任务开始前的意图定形"
+      ],
+      "avoid_trigger_intents": [
+        "目标非常清楚的机械执行任务"
+      ],
+      "upstream_entry_signals": [
+        "我没想清楚",
+        "帮我梳理一下目标",
+        "先定一下 scope"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "ai-metacognitive-core"
+      ],
+      "routing_keywords": [
+        "目标定形",
+        "意图澄清",
+        "成功标准",
+        "scope",
+        "约束"
+      ]
+    },
+    {
+      "canonical_name": "openclaw-feishu-coach",
+      "status": "local-only",
+      "family": "domain",
+      "maturity": "stable",
+      "recommended_priority": "P0",
+      "best_trigger_intents": [
+        "优化 OpenClaw 在飞书里的使用方式",
+        "把用户意图改写成适合发给 FEISHU-CLAW 的消息"
+      ],
+      "avoid_trigger_intents": [
+        "纯 Dify 架构设计",
+        "与飞书无关的通用聊天问题"
+      ],
+      "upstream_entry_signals": [
+        "飞书里怎么发",
+        "OpenClaw 为什么没做好",
+        "帮我调教 FEISHU-CLAW"
+      ],
+      "downstream_dependencies": [
+        "feishu-reader",
+        "playwright"
+      ],
+      "substitute_skills": [
+        "feishu-reader"
+      ],
+      "routing_keywords": [
+        "OpenClaw",
+        "FEISHU-CLAW",
+        "飞书",
+        "调教",
+        "重写 prompt",
+        "失败复盘"
+      ]
+    },
+    {
+      "canonical_name": "playwright",
+      "status": "local+github",
+      "family": "tooling",
+      "maturity": "stable",
+      "recommended_priority": "P0",
+      "best_trigger_intents": [
+        "需要真实浏览器完成 UI 流程",
+        "目标系统只有网页交互路径"
+      ],
+      "avoid_trigger_intents": [
+        "已有稳定 API 或本地 CLI 就能完成的任务"
+      ],
+      "upstream_entry_signals": [
+        "帮我点",
+        "帮我在网页上操作",
+        "浏览器里跑一下",
+        "截图这个页面"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "playwright-interactive"
+      ],
+      "routing_keywords": [
+        "浏览器自动化",
+        "表单填写",
+        "点击",
+        "抓取页面",
+        "截图",
+        "UI 流程"
+      ]
+    },
+    {
+      "canonical_name": "skill-governance",
+      "status": "local-only",
+      "family": "core-organ",
+      "maturity": "stable",
+      "recommended_priority": "P0",
+      "best_trigger_intents": [
+        "判断一个模式是否值得成为 skill",
+        "盘点技能生态的重叠、缺口和治理动作"
+      ],
+      "avoid_trigger_intents": [
+        "直接业务执行",
+        "不涉及 skill 生态的普通任务"
+      ],
+      "upstream_entry_signals": [
+        "这值不值得做成 skill",
+        "帮我盘 skill 生态",
+        "这个应该合并还是新建"
+      ],
+      "downstream_dependencies": [
+        "skill-router"
+      ],
+      "substitute_skills": [
+        "ai-ling-shou-core"
+      ],
+      "routing_keywords": [
+        "技能治理",
+        "要不要做成 skill",
+        "重叠",
+        "收敛",
+        "晋升"
+      ]
+    },
+    {
+      "canonical_name": "skill-router",
+      "status": "local-only",
+      "family": "core-organ",
+      "maturity": "stable",
+      "recommended_priority": "P0",
+      "best_trigger_intents": [
+        "存在多条可行路径，需要先决定最优 skill 和工具组合",
+        "先选路再执行"
+      ],
+      "avoid_trigger_intents": [
+        "只有唯一明显路径的简单任务"
+      ],
+      "upstream_entry_signals": [
+        "你该调哪个",
+        "这个怎么走最省",
+        "先选工具和 skill"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "skill-governance"
+      ],
+      "routing_keywords": [
+        "技能路由",
+        "该调哪个 skill",
+        "reuse first",
+        "最优路径",
+        "能力组合"
+      ]
+    },
+    {
+      "canonical_name": "ai-metacognitive-core",
+      "status": "local+github",
+      "family": "core-organ",
+      "maturity": "stable",
+      "recommended_priority": "P1",
+      "best_trigger_intents": [
+        "任务明显匹配该 skill 的专长"
+      ],
+      "avoid_trigger_intents": [],
+      "upstream_entry_signals": [
+        "ai",
+        "metacognitive",
+        "core",
+        "use",
+        "when",
+        "the"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [],
+      "routing_keywords": [
+        "ai",
+        "metacognitive",
+        "core",
+        "use",
+        "when",
+        "the",
+        "user",
+        "wants"
+      ]
+    },
+    {
+      "canonical_name": "atlas",
+      "status": "local+github",
+      "family": "tooling",
+      "maturity": "usable",
+      "recommended_priority": "P2",
+      "best_trigger_intents": [
+        "与该工具或平台直接相关的操作任务"
+      ],
+      "avoid_trigger_intents": [
+        "已有更轻、更稳定的本地路径时不要优先调用"
+      ],
+      "upstream_entry_signals": [
+        "atlas",
+        "macos-only",
+        "applescript",
+        "control",
+        "for",
+        "the"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [],
+      "routing_keywords": [
+        "atlas",
+        "macos-only",
+        "applescript",
+        "control",
+        "for",
+        "the",
+        "chatgpt"
+      ]
+    },
+    {
+      "canonical_name": "business-structure-designer",
+      "status": "github-only",
+      "family": "domain",
+      "maturity": "usable",
+      "recommended_priority": "P2",
+      "best_trigger_intents": [
+        "与该平台或业务域直接相关的任务"
+      ],
+      "avoid_trigger_intents": [
+        "任务与该域无关时不要调用"
+      ],
+      "upstream_entry_signals": [
+        "business",
+        "structure",
+        "designer",
+        "excel"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [],
+      "routing_keywords": [
+        "business",
+        "structure",
+        "designer",
+        "excel"
+      ]
+    },
+    {
+      "canonical_name": "cloudflare-deploy",
+      "status": "local+github",
+      "family": "tooling",
+      "maturity": "stable",
+      "recommended_priority": "P2",
+      "best_trigger_intents": [
+        "与该工具或平台直接相关的操作任务"
+      ],
+      "avoid_trigger_intents": [
+        "已有更轻、更稳定的本地路径时不要优先调用"
+      ],
+      "upstream_entry_signals": [
+        "cloudflare",
+        "deploy",
+        "applications",
+        "and",
+        "infrastructure",
+        "to"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [],
+      "routing_keywords": [
+        "cloudflare",
+        "deploy",
+        "applications",
+        "and",
+        "infrastructure",
+        "to"
+      ]
+    },
+    {
+      "canonical_name": "coze-workflow-operator",
+      "status": "local-only",
+      "family": "workflow",
+      "maturity": "experimental",
+      "recommended_priority": "P2",
+      "best_trigger_intents": [
+        "需要把业务流程落成平台工作流"
+      ],
+      "avoid_trigger_intents": [
+        "只做概念讨论而不涉及平台实现"
+      ],
+      "upstream_entry_signals": [
+        "coze",
+        "workflow",
+        "operator",
+        "end-to-end",
+        "china",
+        "design"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [],
+      "routing_keywords": [
+        "coze",
+        "workflow",
+        "operator",
+        "end-to-end",
+        "china",
+        "design",
+        "debugging"
+      ]
+    },
+    {
+      "canonical_name": "doc",
+      "status": "local+github",
+      "family": "tooling",
+      "maturity": "stable",
+      "recommended_priority": "P2",
+      "best_trigger_intents": [
+        "与该工具或平台直接相关的操作任务"
+      ],
+      "avoid_trigger_intents": [
+        "已有更轻、更稳定的本地路径时不要优先调用"
+      ],
+      "upstream_entry_signals": [
+        "doc",
+        "use",
+        "when",
+        "the",
+        "task",
+        "involves"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [],
+      "routing_keywords": [
+        "doc",
+        "use",
+        "when",
+        "the",
+        "task",
+        "involves",
+        "reading"
+      ]
+    },
+    {
+      "canonical_name": "feishu-bitable-bridge",
+      "status": "github-only",
+      "family": "domain",
+      "maturity": "usable",
+      "recommended_priority": "P2",
+      "best_trigger_intents": [
+        "与该平台或业务域直接相关的任务"
+      ],
+      "avoid_trigger_intents": [
+        "任务与该域无关时不要调用"
+      ],
+      "upstream_entry_signals": [
+        "feishu",
+        "bitable",
+        "bridge",
+        "use",
+        "when",
+        "codex"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [],
+      "routing_keywords": [
+        "feishu",
+        "bitable",
+        "bridge",
+        "use",
+        "when",
+        "codex",
+        "needs",
+        "to",
+        "open"
+      ]
+    },
+    {
+      "canonical_name": "feishu-dashboard-automator",
+      "status": "github-only",
+      "family": "domain",
+      "maturity": "usable",
+      "recommended_priority": "P2",
+      "best_trigger_intents": [
+        "与该平台或业务域直接相关的任务"
+      ],
+      "avoid_trigger_intents": [
+        "任务与该域无关时不要调用"
+      ],
+      "upstream_entry_signals": [
+        "feishu",
+        "dashboard",
+        "automator",
+        "base"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [],
+      "routing_keywords": [
+        "feishu",
+        "dashboard",
+        "automator",
+        "base"
+      ]
+    },
+    {
+      "canonical_name": "feishu-get-biji-sync",
+      "status": "local-only",
+      "family": "domain",
+      "maturity": "experimental",
+      "recommended_priority": "P2",
+      "best_trigger_intents": [
+        "与该平台或业务域直接相关的任务"
+      ],
+      "avoid_trigger_intents": [
+        "任务与该域无关时不要调用"
+      ],
+      "upstream_entry_signals": [
+        "feishu",
+        "get",
+        "biji",
+        "sync",
+        "use",
+        "when"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [],
+      "routing_keywords": [
+        "feishu",
+        "get",
+        "biji",
+        "sync",
+        "use",
+        "when",
+        "codex",
+        "needs",
+        "to",
+        "batch"
+      ]
+    },
+    {
+      "canonical_name": "feishu-workflow-builder",
+      "status": "local-only",
+      "family": "workflow",
+      "maturity": "experimental",
+      "recommended_priority": "P2",
+      "best_trigger_intents": [
+        "需要把业务流程落成平台工作流"
+      ],
+      "avoid_trigger_intents": [
+        "只做概念讨论而不涉及平台实现"
+      ],
+      "upstream_entry_signals": [
+        "feishu",
+        "workflow",
+        "builder",
+        "design",
+        "implement",
+        "scaffold"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [],
+      "routing_keywords": [
+        "feishu",
+        "workflow",
+        "builder",
+        "design",
+        "implement",
+        "scaffold",
+        "deploy",
+        "and",
+        "troubleshoot"
+      ]
+    },
+    {
+      "canonical_name": "figma",
+      "status": "local+github",
+      "family": "tooling",
+      "maturity": "stable",
+      "recommended_priority": "P2",
+      "best_trigger_intents": [
+        "与该工具或平台直接相关的操作任务"
+      ],
+      "avoid_trigger_intents": [
+        "已有更轻、更稳定的本地路径时不要优先调用"
+      ],
+      "upstream_entry_signals": [
+        "figma",
+        "use",
+        "the",
+        "mcp",
+        "server",
+        "to"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [],
+      "routing_keywords": [
+        "figma",
+        "use",
+        "the",
+        "mcp",
+        "server",
+        "to"
+      ]
+    },
+    {
+      "canonical_name": "figma-implement-design",
+      "status": "local+github",
+      "family": "tooling",
+      "maturity": "stable",
+      "recommended_priority": "P2",
+      "best_trigger_intents": [
+        "与该工具或平台直接相关的操作任务"
+      ],
+      "avoid_trigger_intents": [
+        "已有更轻、更稳定的本地路径时不要优先调用"
+      ],
+      "upstream_entry_signals": [
+        "figma",
+        "implement",
+        "design",
+        "translate",
+        "nodes",
+        "into"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [],
+      "routing_keywords": [
+        "figma",
+        "implement",
+        "design",
+        "translate",
+        "nodes",
+        "into",
+        "production-ready",
+        "code"
+      ]
+    },
+    {
+      "canonical_name": "get-biji-transcript",
+      "status": "alias-drift",
+      "family": "domain",
+      "maturity": "usable",
+      "recommended_priority": "P2",
+      "best_trigger_intents": [
+        "与该平台或业务域直接相关的任务"
+      ],
+      "avoid_trigger_intents": [
+        "任务与该域无关时不要调用"
+      ],
+      "upstream_entry_signals": [
+        "get",
+        "biji",
+        "transcript",
+        "use",
+        "when",
+        "codex"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "get-biji-tra"
+      ],
+      "routing_keywords": [
+        "get",
+        "biji",
+        "transcript",
+        "use",
+        "when",
+        "codex",
+        "needs",
+        "to",
+        "operate"
+      ]
+    },
+    {
+      "canonical_name": "gh-address-comments",
+      "status": "local+github",
+      "family": "tooling",
+      "maturity": "stable",
+      "recommended_priority": "P2",
+      "best_trigger_intents": [
+        "与该工具或平台直接相关的操作任务"
+      ],
+      "avoid_trigger_intents": [
+        "已有更轻、更稳定的本地路径时不要优先调用"
+      ],
+      "upstream_entry_signals": [
+        "gh",
+        "address",
+        "comments",
+        "help",
+        "review",
+        "issue"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [],
+      "routing_keywords": [
+        "gh",
+        "address",
+        "comments",
+        "help",
+        "review",
+        "issue",
+        "on"
+      ]
+    },
+    {
+      "canonical_name": "gh-fix-ci",
+      "status": "local+github",
+      "family": "tooling",
+      "maturity": "stable",
+      "recommended_priority": "P2",
+      "best_trigger_intents": [
+        "与该工具或平台直接相关的操作任务"
+      ],
+      "avoid_trigger_intents": [
+        "已有更轻、更稳定的本地路径时不要优先调用"
+      ],
+      "upstream_entry_signals": [
+        "gh",
+        "fix",
+        "ci",
+        "use",
+        "when",
+        "user"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [],
+      "routing_keywords": [
+        "gh",
+        "fix",
+        "ci",
+        "use",
+        "when",
+        "user",
+        "asks",
+        "to",
+        "debug"
+      ]
+    },
+    {
+      "canonical_name": "github-skill-naming-audit",
+      "status": "github-only",
+      "family": "domain",
+      "maturity": "usable",
+      "recommended_priority": "P2",
+      "best_trigger_intents": [
+        "与该平台或业务域直接相关的任务"
+      ],
+      "avoid_trigger_intents": [
+        "任务与该域无关时不要调用"
+      ],
+      "upstream_entry_signals": [
+        "github",
+        "skill",
+        "naming",
+        "audit",
+        "skills",
+        "readme"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [],
+      "routing_keywords": [
+        "github",
+        "skill",
+        "naming",
+        "audit",
+        "skills",
+        "readme",
+        "description"
+      ]
+    },
+    {
+      "canonical_name": "human-ai-collab-loop",
+      "status": "local-only",
+      "family": "domain",
+      "maturity": "experimental",
+      "recommended_priority": "P2",
+      "best_trigger_intents": [
+        "与该平台或业务域直接相关的任务"
+      ],
+      "avoid_trigger_intents": [
+        "任务与该域无关时不要调用"
+      ],
+      "upstream_entry_signals": [
+        "human",
+        "ai",
+        "collab",
+        "loop",
+        "use",
+        "when"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [],
+      "routing_keywords": [
+        "human",
+        "ai",
+        "collab",
+        "loop",
+        "use",
+        "when",
+        "the",
+        "user",
+        "wants",
+        "human-ai"
+      ]
+    },
+    {
+      "canonical_name": "jiyao-operating-system",
+      "status": "local-only",
+      "family": "domain",
+      "maturity": "experimental",
+      "recommended_priority": "P2",
+      "best_trigger_intents": [
+        "需要少打扰、高自治、强执行的操作系统式协作"
+      ],
+      "avoid_trigger_intents": [
+        "轻任务或不需要自治强约束的请求"
+      ],
+      "upstream_entry_signals": [
+        "jiyao",
+        "operating",
+        "system",
+        "use",
+        "when",
+        "the"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "jiyao-youyao-haiyao",
+        "jiyao-youyao-haiyao-zaiyao"
+      ],
+      "routing_keywords": [
+        "jiyao",
+        "operating",
+        "system",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly",
+        "wants"
+      ]
+    },
+    {
+      "canonical_name": "jiyao-youyao-haiyao",
+      "status": "local+github",
+      "family": "domain",
+      "maturity": "usable",
+      "recommended_priority": "P2",
+      "best_trigger_intents": [
+        "需要少打扰、高自治、强执行的操作系统式协作"
+      ],
+      "avoid_trigger_intents": [
+        "轻任务或不需要自治强约束的请求"
+      ],
+      "upstream_entry_signals": [
+        "jiyao",
+        "youyao",
+        "haiyao",
+        "use",
+        "when",
+        "the"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "jiyao-operating-system",
+        "jiyao-youyao-haiyao-zaiyao"
+      ],
+      "routing_keywords": [
+        "jiyao",
+        "youyao",
+        "haiyao",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly",
+        "asks"
+      ]
+    },
+    {
+      "canonical_name": "jiyao-youyao-haiyao-zaiyao",
+      "status": "local+github",
+      "family": "domain",
+      "maturity": "usable",
+      "recommended_priority": "P2",
+      "best_trigger_intents": [
+        "需要少打扰、高自治、强执行的操作系统式协作"
+      ],
+      "avoid_trigger_intents": [
+        "轻任务或不需要自治强约束的请求"
+      ],
+      "upstream_entry_signals": [
+        "jiyao",
+        "youyao",
+        "haiyao",
+        "zaiyao",
+        "use",
+        "when"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "jiyao-operating-system",
+        "jiyao-youyao-haiyao"
+      ],
+      "routing_keywords": [
+        "jiyao",
+        "youyao",
+        "haiyao",
+        "zaiyao",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly",
+        "mentions"
+      ]
+    },
+    {
+      "canonical_name": "knowledge-orchestrator",
+      "status": "github-only",
+      "family": "domain",
+      "maturity": "usable",
+      "recommended_priority": "P2",
+      "best_trigger_intents": [
+        "与该平台或业务域直接相关的任务"
+      ],
+      "avoid_trigger_intents": [
+        "任务与该域无关时不要调用"
+      ],
+      "upstream_entry_signals": [
+        "knowledge",
+        "orchestrator",
+        "use",
+        "when",
+        "the",
+        "user"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [],
+      "routing_keywords": [
+        "knowledge",
+        "orchestrator",
+        "use",
+        "when",
+        "the",
+        "user",
+        "wants",
+        "codex"
+      ]
+    },
+    {
+      "canonical_name": "linear",
+      "status": "local+github",
+      "family": "tooling",
+      "maturity": "stable",
+      "recommended_priority": "P2",
+      "best_trigger_intents": [
+        "与该工具或平台直接相关的操作任务"
+      ],
+      "avoid_trigger_intents": [
+        "已有更轻、更稳定的本地路径时不要优先调用"
+      ],
+      "upstream_entry_signals": [
+        "linear",
+        "manage",
+        "issues",
+        "projects",
+        "team",
+        "workflows"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [],
+      "routing_keywords": [
+        "linear",
+        "manage",
+        "issues",
+        "projects",
+        "team",
+        "workflows",
+        "in"
+      ]
+    },
+    {
+      "canonical_name": "notion-knowledge-capture",
+      "status": "local+github",
+      "family": "domain",
+      "maturity": "usable",
+      "recommended_priority": "P2",
+      "best_trigger_intents": [
+        "Notion 工作流、文档、研究或规范落地"
+      ],
+      "avoid_trigger_intents": [
+        "与 Notion 无关的知识管理问题"
+      ],
+      "upstream_entry_signals": [
+        "notion",
+        "knowledge",
+        "capture",
+        "conversations",
+        "and",
+        "decisions"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "notion-meeting-intelligence",
+        "notion-research-documentation",
+        "notion-spec-to-implementation"
+      ],
+      "routing_keywords": [
+        "notion",
+        "knowledge",
+        "capture",
+        "conversations",
+        "and",
+        "decisions",
+        "into",
+        "structured"
+      ]
+    },
+    {
+      "canonical_name": "notion-meeting-intelligence",
+      "status": "local+github",
+      "family": "domain",
+      "maturity": "usable",
+      "recommended_priority": "P2",
+      "best_trigger_intents": [
+        "Notion 工作流、文档、研究或规范落地"
+      ],
+      "avoid_trigger_intents": [
+        "与 Notion 无关的知识管理问题"
+      ],
+      "upstream_entry_signals": [
+        "notion",
+        "meeting",
+        "intelligence",
+        "prepare",
+        "materials",
+        "with"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "notion-knowledge-capture",
+        "notion-research-documentation",
+        "notion-spec-to-implementation"
+      ],
+      "routing_keywords": [
+        "notion",
+        "meeting",
+        "intelligence",
+        "prepare",
+        "materials",
+        "with",
+        "context"
+      ]
+    },
+    {
+      "canonical_name": "notion-research-documentation",
+      "status": "local+github",
+      "family": "domain",
+      "maturity": "usable",
+      "recommended_priority": "P2",
+      "best_trigger_intents": [
+        "Notion 工作流、文档、研究或规范落地"
+      ],
+      "avoid_trigger_intents": [
+        "与 Notion 无关的知识管理问题"
+      ],
+      "upstream_entry_signals": [
+        "notion",
+        "research",
+        "documentation",
+        "across",
+        "and",
+        "synthesize"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "notion-knowledge-capture",
+        "notion-meeting-intelligence",
+        "notion-spec-to-implementation"
+      ],
+      "routing_keywords": [
+        "notion",
+        "research",
+        "documentation",
+        "across",
+        "and",
+        "synthesize",
+        "into"
+      ]
+    },
+    {
+      "canonical_name": "notion-spec-to-implementation",
+      "status": "local+github",
+      "family": "domain",
+      "maturity": "usable",
+      "recommended_priority": "P2",
+      "best_trigger_intents": [
+        "Notion 工作流、文档、研究或规范落地"
+      ],
+      "avoid_trigger_intents": [
+        "与 Notion 无关的知识管理问题"
+      ],
+      "upstream_entry_signals": [
+        "notion",
+        "spec",
+        "to",
+        "implementation",
+        "turn",
+        "specs"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "notion-knowledge-capture",
+        "notion-meeting-intelligence",
+        "notion-research-documentation"
+      ],
+      "routing_keywords": [
+        "notion",
+        "spec",
+        "to",
+        "implementation",
+        "turn",
+        "specs",
+        "into",
+        "plans"
+      ]
+    },
+    {
+      "canonical_name": "openai-docs",
+      "status": "local+github",
+      "family": "tooling",
+      "maturity": "stable",
+      "recommended_priority": "P2",
+      "best_trigger_intents": [
+        "与该工具或平台直接相关的操作任务"
+      ],
+      "avoid_trigger_intents": [
+        "已有更轻、更稳定的本地路径时不要优先调用"
+      ],
+      "upstream_entry_signals": [
+        "openai",
+        "docs",
+        "use",
+        "when",
+        "the",
+        "user"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [],
+      "routing_keywords": [
+        "openai",
+        "docs",
+        "use",
+        "when",
+        "the",
+        "user",
+        "asks",
+        "how"
+      ]
+    },
+    {
+      "canonical_name": "pdf",
+      "status": "local+github",
+      "family": "tooling",
+      "maturity": "stable",
+      "recommended_priority": "P2",
+      "best_trigger_intents": [
+        "与该工具或平台直接相关的操作任务"
+      ],
+      "avoid_trigger_intents": [
+        "已有更轻、更稳定的本地路径时不要优先调用"
+      ],
+      "upstream_entry_signals": [
+        "pdf",
+        "use",
+        "when",
+        "tasks",
+        "involve",
+        "reading"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [],
+      "routing_keywords": [
+        "pdf",
+        "use",
+        "when",
+        "tasks",
+        "involve",
+        "reading",
+        "creating"
+      ]
+    },
+    {
+      "canonical_name": "playwright-interactive",
+      "status": "local+github",
+      "family": "tooling",
+      "maturity": "usable",
+      "recommended_priority": "P2",
+      "best_trigger_intents": [
+        "与该工具或平台直接相关的操作任务"
+      ],
+      "avoid_trigger_intents": [
+        "已有更轻、更稳定的本地路径时不要优先调用"
+      ],
+      "upstream_entry_signals": [
+        "playwright",
+        "interactive",
+        "persistent",
+        "browser",
+        "and",
+        "electron"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [],
+      "routing_keywords": [
+        "playwright",
+        "interactive",
+        "persistent",
+        "browser",
+        "and",
+        "electron",
+        "interaction",
+        "through"
+      ]
+    },
+    {
+      "canonical_name": "screenshot",
+      "status": "local+github",
+      "family": "tooling",
+      "maturity": "usable",
+      "recommended_priority": "P2",
+      "best_trigger_intents": [
+        "与该工具或平台直接相关的操作任务"
+      ],
+      "avoid_trigger_intents": [
+        "已有更轻、更稳定的本地路径时不要优先调用"
+      ],
+      "upstream_entry_signals": [
+        "screenshot",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [],
+      "routing_keywords": [
+        "screenshot",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly",
+        "asks"
+      ]
+    },
+    {
+      "canonical_name": "self-evolution-max",
+      "status": "github-only",
+      "family": "domain",
+      "maturity": "usable",
+      "recommended_priority": "P2",
+      "best_trigger_intents": [
+        "与该平台或业务域直接相关的任务"
+      ],
+      "avoid_trigger_intents": [
+        "任务与该域无关时不要调用"
+      ],
+      "upstream_entry_signals": [
+        "self",
+        "evolution",
+        "max",
+        "use",
+        "when",
+        "the"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [],
+      "routing_keywords": [
+        "self",
+        "evolution",
+        "max",
+        "use",
+        "when",
+        "the",
+        "user",
+        "wants",
+        "multi-round"
+      ]
+    },
+    {
+      "canonical_name": "skill-pattern-publisher",
+      "status": "local+github",
+      "family": "domain",
+      "maturity": "usable",
+      "recommended_priority": "P2",
+      "best_trigger_intents": [
+        "与该平台或业务域直接相关的任务"
+      ],
+      "avoid_trigger_intents": [
+        "任务与该域无关时不要调用"
+      ],
+      "upstream_entry_signals": [
+        "skill",
+        "pattern",
+        "publisher",
+        "use",
+        "when",
+        "user"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [],
+      "routing_keywords": [
+        "skill",
+        "pattern",
+        "publisher",
+        "use",
+        "when",
+        "user",
+        "wants",
+        "to",
+        "formalize"
+      ]
+    },
+    {
+      "canonical_name": "slides",
+      "status": "local+github",
+      "family": "tooling",
+      "maturity": "stable",
+      "recommended_priority": "P2",
+      "best_trigger_intents": [
+        "与该工具或平台直接相关的操作任务"
+      ],
+      "avoid_trigger_intents": [
+        "已有更轻、更稳定的本地路径时不要优先调用"
+      ],
+      "upstream_entry_signals": [
+        "slides",
+        "create",
+        "and",
+        "edit",
+        "presentation",
+        "slide"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [],
+      "routing_keywords": [
+        "slides",
+        "create",
+        "and",
+        "edit",
+        "presentation",
+        "slide",
+        "decks"
+      ]
+    },
+    {
+      "canonical_name": "speech",
+      "status": "local+github",
+      "family": "tooling",
+      "maturity": "stable",
+      "recommended_priority": "P2",
+      "best_trigger_intents": [
+        "与该工具或平台直接相关的操作任务"
+      ],
+      "avoid_trigger_intents": [
+        "已有更轻、更稳定的本地路径时不要优先调用"
+      ],
+      "upstream_entry_signals": [
+        "speech",
+        "use",
+        "when",
+        "the",
+        "user",
+        "asks"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [],
+      "routing_keywords": [
+        "speech",
+        "use",
+        "when",
+        "the",
+        "user",
+        "asks",
+        "for"
+      ]
+    },
+    {
+      "canonical_name": "spreadsheet",
+      "status": "local+github",
+      "family": "tooling",
+      "maturity": "stable",
+      "recommended_priority": "P2",
+      "best_trigger_intents": [
+        "与该工具或平台直接相关的操作任务"
+      ],
+      "avoid_trigger_intents": [
+        "已有更轻、更稳定的本地路径时不要优先调用"
+      ],
+      "upstream_entry_signals": [
+        "spreadsheet",
+        "use",
+        "when",
+        "tasks",
+        "involve",
+        "creating"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [],
+      "routing_keywords": [
+        "spreadsheet",
+        "use",
+        "when",
+        "tasks",
+        "involve",
+        "creating",
+        "editing"
+      ]
+    },
+    {
+      "canonical_name": "strategy-skill-template",
+      "status": "github-only",
+      "family": "domain",
+      "maturity": "usable",
+      "recommended_priority": "P2",
+      "best_trigger_intents": [
+        "与该平台或业务域直接相关的任务"
+      ],
+      "avoid_trigger_intents": [
+        "任务与该域无关时不要调用"
+      ],
+      "upstream_entry_signals": [
+        "strategy",
+        "skill",
+        "template",
+        "use",
+        "when",
+        "user"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [],
+      "routing_keywords": [
+        "strategy",
+        "skill",
+        "template",
+        "use",
+        "when",
+        "user",
+        "wants",
+        "to",
+        "formalize"
+      ]
+    },
+    {
+      "canonical_name": "wechat-article-writer",
+      "status": "local+github",
+      "family": "domain",
+      "maturity": "usable",
+      "recommended_priority": "P2",
+      "best_trigger_intents": [
+        "与该平台或业务域直接相关的任务"
+      ],
+      "avoid_trigger_intents": [
+        "任务与该域无关时不要调用"
+      ],
+      "upstream_entry_signals": [
+        "wechat",
+        "article",
+        "writer",
+        "skill"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [],
+      "routing_keywords": [
+        "wechat",
+        "article",
+        "writer",
+        "skill"
+      ]
+    },
+    {
+      "canonical_name": "worldmonitor-local-runner",
+      "status": "local-only",
+      "family": "workflow",
+      "maturity": "experimental",
+      "recommended_priority": "P2",
+      "best_trigger_intents": [
+        "需要把业务流程落成平台工作流"
+      ],
+      "avoid_trigger_intents": [
+        "只做概念讨论而不涉及平台实现"
+      ],
+      "upstream_entry_signals": [
+        "worldmonitor",
+        "local",
+        "runner",
+        "use",
+        "when",
+        "the"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [],
+      "routing_keywords": [
+        "worldmonitor",
+        "local",
+        "runner",
+        "use",
+        "when",
+        "the",
+        "user",
+        "wants",
+        "to"
+      ]
+    },
+    {
+      "canonical_name": "youquant-backtest-automation",
+      "status": "alias-drift",
+      "family": "domain",
+      "maturity": "usable",
+      "recommended_priority": "P2",
+      "best_trigger_intents": [
+        "与该平台或业务域直接相关的任务"
+      ],
+      "avoid_trigger_intents": [
+        "任务与该域无关时不要调用"
+      ],
+      "upstream_entry_signals": [
+        "youquant",
+        "backtest",
+        "automation",
+        "end-to-end",
+        "for",
+        "implementing"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "youquant-backtest"
+      ],
+      "routing_keywords": [
+        "youquant",
+        "backtest",
+        "automation",
+        "end-to-end",
+        "for",
+        "implementing",
+        "new",
+        "quantitative"
+      ]
+    },
+    {
+      "canonical_name": "agency-agentic-identity-trust",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "agentic",
+        "identity",
+        "trust",
+        "use",
+        "when"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian",
+        "agency-design-image-prompt-engineer"
+      ],
+      "routing_keywords": [
+        "agency",
+        "agentic",
+        "identity",
+        "trust",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly",
+        "asks"
+      ]
+    },
+    {
+      "canonical_name": "agency-agents-orchestrator",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "agents",
+        "orchestrator",
+        "use",
+        "when",
+        "the"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian",
+        "agency-design-image-prompt-engineer"
+      ],
+      "routing_keywords": [
+        "agency",
+        "agents",
+        "orchestrator",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly",
+        "asks"
+      ]
+    },
+    {
+      "canonical_name": "agency-data-analytics-reporter",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "data",
+        "analytics",
+        "reporter",
+        "use",
+        "when"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian",
+        "agency-design-image-prompt-engineer"
+      ],
+      "routing_keywords": [
+        "agency",
+        "data",
+        "analytics",
+        "reporter",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly",
+        "asks"
+      ]
+    },
+    {
+      "canonical_name": "agency-data-consolidation-agent",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "data",
+        "consolidation",
+        "agent",
+        "use",
+        "when"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-design-brand-guardian",
+        "agency-design-image-prompt-engineer"
+      ],
+      "routing_keywords": [
+        "agency",
+        "data",
+        "consolidation",
+        "agent",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly",
+        "asks"
+      ]
+    },
+    {
+      "canonical_name": "agency-design-brand-guardian",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "design",
+        "brand",
+        "guardian",
+        "use",
+        "when"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-image-prompt-engineer"
+      ],
+      "routing_keywords": [
+        "agency",
+        "design",
+        "brand",
+        "guardian",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly",
+        "asks"
+      ]
+    },
+    {
+      "canonical_name": "agency-design-image-prompt-engineer",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "design",
+        "image",
+        "prompt",
+        "engineer",
+        "use"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "design",
+        "image",
+        "prompt",
+        "engineer",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly"
+      ]
+    },
+    {
+      "canonical_name": "agency-design-ui-designer",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "design",
+        "ui",
+        "designer",
+        "use",
+        "when"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "design",
+        "ui",
+        "designer",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly",
+        "asks"
+      ]
+    },
+    {
+      "canonical_name": "agency-design-ux-architect",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "design",
+        "ux",
+        "architect",
+        "use",
+        "when"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "design",
+        "ux",
+        "architect",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly",
+        "asks"
+      ]
+    },
+    {
+      "canonical_name": "agency-design-ux-researcher",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "design",
+        "ux",
+        "researcher",
+        "use",
+        "when"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "design",
+        "ux",
+        "researcher",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly",
+        "asks"
+      ]
+    },
+    {
+      "canonical_name": "agency-design-visual-storyteller",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "design",
+        "visual",
+        "storyteller",
+        "use",
+        "when"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "design",
+        "visual",
+        "storyteller",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly",
+        "asks"
+      ]
+    },
+    {
+      "canonical_name": "agency-design-whimsy-injector",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "design",
+        "whimsy",
+        "injector",
+        "use",
+        "when"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "design",
+        "whimsy",
+        "injector",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly",
+        "asks"
+      ]
+    },
+    {
+      "canonical_name": "agency-engineering-ai-engineer",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "engineering",
+        "ai",
+        "engineer",
+        "use",
+        "when"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "engineering",
+        "ai",
+        "engineer",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly",
+        "asks"
+      ]
+    },
+    {
+      "canonical_name": "agency-engineering-backend-architect",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "engineering",
+        "backend",
+        "architect",
+        "use",
+        "when"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "engineering",
+        "backend",
+        "architect",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly",
+        "asks"
+      ]
+    },
+    {
+      "canonical_name": "agency-engineering-devops-automator",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "engineering",
+        "devops",
+        "automator",
+        "use",
+        "when"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "engineering",
+        "devops",
+        "automator",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly",
+        "asks"
+      ]
+    },
+    {
+      "canonical_name": "agency-engineering-frontend-developer",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "engineering",
+        "frontend",
+        "developer",
+        "use",
+        "when"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "engineering",
+        "frontend",
+        "developer",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly",
+        "asks"
+      ]
+    },
+    {
+      "canonical_name": "agency-engineering-mobile-app-builder",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "engineering",
+        "mobile",
+        "app",
+        "builder",
+        "use"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "engineering",
+        "mobile",
+        "app",
+        "builder",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly"
+      ]
+    },
+    {
+      "canonical_name": "agency-engineering-rapid-prototyper",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "engineering",
+        "rapid",
+        "prototyper",
+        "use",
+        "when"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "engineering",
+        "rapid",
+        "prototyper",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly",
+        "asks"
+      ]
+    },
+    {
+      "canonical_name": "agency-engineering-senior-developer",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "engineering",
+        "senior",
+        "developer",
+        "use",
+        "when"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "engineering",
+        "senior",
+        "developer",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly",
+        "asks"
+      ]
+    },
+    {
+      "canonical_name": "agency-lsp-index-engineer",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "lsp",
+        "index",
+        "engineer",
+        "use",
+        "when"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "lsp",
+        "index",
+        "engineer",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly",
+        "asks"
+      ]
+    },
+    {
+      "canonical_name": "agency-macos-spatial-metal-engineer",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "macos",
+        "spatial",
+        "metal",
+        "engineer",
+        "use"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "macos",
+        "spatial",
+        "metal",
+        "engineer",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly"
+      ]
+    },
+    {
+      "canonical_name": "agency-marketing-app-store-optimizer",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "marketing",
+        "app",
+        "store",
+        "optimizer",
+        "use"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "marketing",
+        "app",
+        "store",
+        "optimizer",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly"
+      ]
+    },
+    {
+      "canonical_name": "agency-marketing-content-creator",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "marketing",
+        "content",
+        "creator",
+        "use",
+        "when"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "marketing",
+        "content",
+        "creator",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly",
+        "asks"
+      ]
+    },
+    {
+      "canonical_name": "agency-marketing-growth-hacker",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "marketing",
+        "growth",
+        "hacker",
+        "use",
+        "when"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "marketing",
+        "growth",
+        "hacker",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly",
+        "asks"
+      ]
+    },
+    {
+      "canonical_name": "agency-marketing-instagram-curator",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "marketing",
+        "instagram",
+        "curator",
+        "use",
+        "when"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "marketing",
+        "instagram",
+        "curator",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly",
+        "asks"
+      ]
+    },
+    {
+      "canonical_name": "agency-marketing-reddit-community-builder",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "marketing",
+        "reddit",
+        "community",
+        "builder",
+        "use"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "marketing",
+        "reddit",
+        "community",
+        "builder",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly"
+      ]
+    },
+    {
+      "canonical_name": "agency-marketing-social-media-strategist",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "marketing",
+        "social",
+        "media",
+        "strategist",
+        "use"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "marketing",
+        "social",
+        "media",
+        "strategist",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly"
+      ]
+    },
+    {
+      "canonical_name": "agency-marketing-tiktok-strategist",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "marketing",
+        "tiktok",
+        "strategist",
+        "use",
+        "when"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "marketing",
+        "tiktok",
+        "strategist",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly",
+        "asks"
+      ]
+    },
+    {
+      "canonical_name": "agency-marketing-twitter-engager",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "marketing",
+        "twitter",
+        "engager",
+        "use",
+        "when"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "marketing",
+        "twitter",
+        "engager",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly",
+        "asks"
+      ]
+    },
+    {
+      "canonical_name": "agency-product-feedback-synthesizer",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "product",
+        "feedback",
+        "synthesizer",
+        "use",
+        "when"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "product",
+        "feedback",
+        "synthesizer",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly",
+        "asks"
+      ]
+    },
+    {
+      "canonical_name": "agency-product-sprint-prioritizer",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "product",
+        "sprint",
+        "prioritizer",
+        "use",
+        "when"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "product",
+        "sprint",
+        "prioritizer",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly",
+        "asks"
+      ]
+    },
+    {
+      "canonical_name": "agency-product-trend-researcher",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "product",
+        "trend",
+        "researcher",
+        "use",
+        "when"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "product",
+        "trend",
+        "researcher",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly",
+        "asks"
+      ]
+    },
+    {
+      "canonical_name": "agency-project-management-experiment-tracker",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "project",
+        "management",
+        "experiment",
+        "tracker",
+        "use"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "project",
+        "management",
+        "experiment",
+        "tracker",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly"
+      ]
+    },
+    {
+      "canonical_name": "agency-project-management-project-shepherd",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "project",
+        "management",
+        "project",
+        "shepherd",
+        "use"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "project",
+        "management",
+        "project",
+        "shepherd",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly"
+      ]
+    },
+    {
+      "canonical_name": "agency-project-management-studio-operations",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "project",
+        "management",
+        "studio",
+        "operations",
+        "use"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "project",
+        "management",
+        "studio",
+        "operations",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly"
+      ]
+    },
+    {
+      "canonical_name": "agency-project-management-studio-producer",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "project",
+        "management",
+        "studio",
+        "producer",
+        "use"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "project",
+        "management",
+        "studio",
+        "producer",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly"
+      ]
+    },
+    {
+      "canonical_name": "agency-project-manager-senior",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "project",
+        "manager",
+        "senior",
+        "use",
+        "when"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "project",
+        "manager",
+        "senior",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly",
+        "asks"
+      ]
+    },
+    {
+      "canonical_name": "agency-report-distribution-agent",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "report",
+        "distribution",
+        "agent",
+        "use",
+        "when"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "report",
+        "distribution",
+        "agent",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly",
+        "asks"
+      ]
+    },
+    {
+      "canonical_name": "agency-sales-data-extraction-agent",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "sales",
+        "data",
+        "extraction",
+        "agent",
+        "use"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "sales",
+        "data",
+        "extraction",
+        "agent",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly"
+      ]
+    },
+    {
+      "canonical_name": "agency-support-analytics-reporter",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "support",
+        "analytics",
+        "reporter",
+        "use",
+        "when"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "support",
+        "analytics",
+        "reporter",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly",
+        "asks"
+      ]
+    },
+    {
+      "canonical_name": "agency-support-executive-summary-generator",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "support",
+        "executive",
+        "summary",
+        "generator",
+        "use"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "support",
+        "executive",
+        "summary",
+        "generator",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly"
+      ]
+    },
+    {
+      "canonical_name": "agency-support-finance-tracker",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "support",
+        "finance",
+        "tracker",
+        "use",
+        "when"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "support",
+        "finance",
+        "tracker",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly",
+        "asks"
+      ]
+    },
+    {
+      "canonical_name": "agency-support-infrastructure-maintainer",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "support",
+        "infrastructure",
+        "maintainer",
+        "use",
+        "when"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "support",
+        "infrastructure",
+        "maintainer",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly",
+        "asks"
+      ]
+    },
+    {
+      "canonical_name": "agency-support-legal-compliance-checker",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "support",
+        "legal",
+        "compliance",
+        "checker",
+        "use"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "support",
+        "legal",
+        "compliance",
+        "checker",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly"
+      ]
+    },
+    {
+      "canonical_name": "agency-support-support-responder",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "support",
+        "support",
+        "responder",
+        "use",
+        "when"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "support",
+        "support",
+        "responder",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly",
+        "asks"
+      ]
+    },
+    {
+      "canonical_name": "agency-terminal-integration-specialist",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "terminal",
+        "integration",
+        "specialist",
+        "use",
+        "when"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "terminal",
+        "integration",
+        "specialist",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly",
+        "asks"
+      ]
+    },
+    {
+      "canonical_name": "agency-testing-api-tester",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "testing",
+        "api",
+        "tester",
+        "use",
+        "when"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "testing",
+        "api",
+        "tester",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly",
+        "asks"
+      ]
+    },
+    {
+      "canonical_name": "agency-testing-evidence-collector",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "testing",
+        "evidence",
+        "collector",
+        "use",
+        "when"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "testing",
+        "evidence",
+        "collector",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly",
+        "asks"
+      ]
+    },
+    {
+      "canonical_name": "agency-testing-performance-benchmarker",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "testing",
+        "performance",
+        "benchmarker",
+        "use",
+        "when"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "testing",
+        "performance",
+        "benchmarker",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly",
+        "asks"
+      ]
+    },
+    {
+      "canonical_name": "agency-testing-reality-checker",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "testing",
+        "reality",
+        "checker",
+        "use",
+        "when"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "testing",
+        "reality",
+        "checker",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly",
+        "asks"
+      ]
+    },
+    {
+      "canonical_name": "agency-testing-test-results-analyzer",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "testing",
+        "test",
+        "results",
+        "analyzer",
+        "use"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "testing",
+        "test",
+        "results",
+        "analyzer",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly"
+      ]
+    },
+    {
+      "canonical_name": "agency-testing-tool-evaluator",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "testing",
+        "tool",
+        "evaluator",
+        "use",
+        "when"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "testing",
+        "tool",
+        "evaluator",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly",
+        "asks"
+      ]
+    },
+    {
+      "canonical_name": "agency-testing-workflow-optimizer",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "testing",
+        "workflow",
+        "optimizer",
+        "use",
+        "when"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "testing",
+        "workflow",
+        "optimizer",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly",
+        "asks"
+      ]
+    },
+    {
+      "canonical_name": "agency-visionos-spatial-engineer",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "visionos",
+        "spatial",
+        "engineer",
+        "use",
+        "when"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "visionos",
+        "spatial",
+        "engineer",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly",
+        "asks"
+      ]
+    },
+    {
+      "canonical_name": "agency-xr-cockpit-interaction-specialist",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "xr",
+        "cockpit",
+        "interaction",
+        "specialist",
+        "use"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "xr",
+        "cockpit",
+        "interaction",
+        "specialist",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly"
+      ]
+    },
+    {
+      "canonical_name": "agency-xr-immersive-developer",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "xr",
+        "immersive",
+        "developer",
+        "use",
+        "when"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "xr",
+        "immersive",
+        "developer",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly",
+        "asks"
+      ]
+    },
+    {
+      "canonical_name": "agency-xr-interface-architect",
+      "status": "local+github",
+      "family": "agency",
+      "maturity": "usable",
+      "recommended_priority": "P3",
+      "best_trigger_intents": [
+        "用户显式点名 agency 角色",
+        "任务强烈匹配某个专业角色的专长"
+      ],
+      "avoid_trigger_intents": [
+        "普通任务但角色没有明显增益",
+        "只是因为名字看起来专业就调用"
+      ],
+      "upstream_entry_signals": [
+        "agency",
+        "xr",
+        "interface",
+        "architect",
+        "use",
+        "when"
+      ],
+      "downstream_dependencies": [],
+      "substitute_skills": [
+        "agency-agentic-identity-trust",
+        "agency-agents-orchestrator",
+        "agency-data-analytics-reporter",
+        "agency-data-consolidation-agent",
+        "agency-design-brand-guardian"
+      ],
+      "routing_keywords": [
+        "agency",
+        "xr",
+        "interface",
+        "architect",
+        "use",
+        "when",
+        "the",
+        "user",
+        "explicitly",
+        "asks"
+      ]
+    }
+  ]
+}

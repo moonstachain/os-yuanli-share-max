@@ -1,0 +1,7 @@
+interface:
+  display_name: "证据质检"
+  short_description: "Independent proof and read-back before accepting results"
+  default_prompt: "Use $evidence-gate to verify this result with artifact proof, goal proof, and read-back confirmation."
+
+policy:
+  allow_implicit_invocation: false

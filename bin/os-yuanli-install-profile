@@ -1,0 +1,214 @@
+#!/usr/bin/env python3
+"""os-yuanli-install-profile
+
+把 os-yuanli-share-max 的某个 profile 安装到学员本机的 ~/.claude/skills/。
+
+用法：
+    bin/os-yuanli-install-profile --profile lite
+    bin/os-yuanli-install-profile --profile engineer
+    bin/os-yuanli-install-profile --profile yuanli-full --materialize-sample-wiki
+    bin/os-yuanli-install-profile --profile lite --dry-run
+
+行为：
+    1. 读取 profiles/<name>/profile.yaml
+    2. 解析 extends 链（lite 是终点）
+    3. 把 os-yuanli kernel → ~/.claude/skills/os-yuanli/
+    4. 把 skills-satellite/<each> → ~/.claude/skills/<each>/
+    5. 对 external_skills：
+       - source: "local:~/..." → 如果存在就 symlink 到 ~/.claude/skills/
+       - source: "git+https://..." → git clone 到 ~/.claude/skills/<name>/
+       - 不存在时打印警告但不中断
+    6. yuanli-full 专属：
+       --materialize-sample-wiki 把 profiles/yuanli-full/sample-wiki/ 复制到 $WIKI_ROOT
+       同时对所有 skill 文件做 /Users/liming/Documents/LLM-Wiki → $WIKI_ROOT 替换
+    7. 检查 env_required，缺则警告
+
+约束：
+    - 幂等：重复安装不破坏已有 skill（除非 --force）
+    - 干跑：--dry-run 只打印要做的事
+    - 不写 settings.json（由 hooks 示例单独操作）
+"""
+from __future__ import annotations
+
+import argparse
+import os
+import shutil
+import subprocess
+import sys
+from pathlib import Path
+
+try:
+    import yaml  # type: ignore
+except ImportError:
+    print("ERROR: 需要 PyYAML。先运行：pip install -r requirements.txt", file=sys.stderr)
+    sys.exit(2)
+
+
+REPO_ROOT = Path(__file__).resolve().parent.parent
+SKILLS_TARGET = Path(os.path.expanduser("~/.claude/skills"))
+
+
+def log(msg: str, level: str = "INFO") -> None:
+    prefix = {"INFO": "·", "OK": "✓", "WARN": "⚠", "ERR": "✗", "DRY": "○"}.get(level, "·")
+    print(f"{prefix} {msg}")
+
+
+def load_profile(name: str) -> dict:
+    path = REPO_ROOT / "profiles" / name / "profile.yaml"
+    if not path.exists():
+        raise SystemExit(f"profile 不存在：{path}")
+    data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    if "extends" in data:
+        base = load_profile(data["extends"])
+        merged = {**base, **data}
+        merged["external_skills"] = (base.get("external_skills") or []) + (data.get("external_skills") or [])
+        return merged
+    return data
+
+
+def ensure_dir(path: Path, dry: bool) -> None:
+    if dry:
+        log(f"mkdir -p {path}", "DRY")
+        return
+    path.mkdir(parents=True, exist_ok=True)
+
+
+def install_kernel(dry: bool, force: bool) -> None:
+    src = REPO_ROOT / "os-yuanli"
+    dst = SKILLS_TARGET / "os-yuanli"
+    if dst.exists() and not force:
+        log(f"kernel 已存在，跳过：{dst}（用 --force 覆盖）", "WARN")
+        return
+    if dry:
+        log(f"cp -r {src} {dst}", "DRY")
+        return
+    if dst.exists():
+        shutil.rmtree(dst)
+    shutil.copytree(src, dst)
+    log(f"kernel → {dst}", "OK")
+
+
+def install_satellite(name: str, dry: bool, force: bool) -> bool:
+    src = REPO_ROOT / "skills-satellite" / name
+    if not src.exists():
+        log(f"卫星 skill 不在仓库中：{name}", "ERR")
+        return False
+    dst = SKILLS_TARGET / name
+    if dst.exists() and not force:
+        log(f"已存在，跳过：{dst}", "WARN")
+        return True
+    if dry:
+        log(f"cp -r {src} {dst}", "DRY")
+        return True
+    if dst.exists():
+        shutil.rmtree(dst)
+    shutil.copytree(src, dst)
+    log(f"satellite {name} → {dst}", "OK")
+    return True
+
+
+def install_external(entry: dict, dry: bool, force: bool) -> None:
+    name = entry["name"]
+    source = entry.get("source", "")
+    dst = SKILLS_TARGET / name
+
+    if source.startswith("local:"):
+        raw = source.removeprefix("local:")
+        src = Path(os.path.expanduser(raw))
+        if not src.exists():
+            log(f"external {name} 本机未找到（source={source}）", "WARN")
+            return
+        if dst.exists() and not force:
+            log(f"external {name} 已存在，跳过", "WARN")
+            return
+        if dry:
+            log(f"ln -s {src} {dst}", "DRY")
+            return
+        if dst.exists():
+            if dst.is_symlink() or dst.is_dir():
+                if dst.is_symlink():
+                    dst.unlink()
+                else:
+                    shutil.rmtree(dst)
+        dst.symlink_to(src)
+        log(f"external {name} → symlink to {src}", "OK")
+        return
+
+    if source.startswith("git+"):
+        url = source.removeprefix("git+")
+        if dst.exists() and not force:
+            log(f"external {name} 已存在，跳过", "WARN")
+            return
+        if dry:
+            log(f"git clone {url} {dst}", "DRY")
+            return
+        subprocess.run(["git", "clone", "--depth", "1", url, str(dst)], check=True)
+        log(f"external {name} → git clone from {url}", "OK")
+        return
+
+    log(f"external {name} 未识别的 source: {source}", "WARN")
+
+
+def check_env(profile: dict) -> None:
+    missing = []
+    for var in profile.get("env_required") or []:
+        name = var["name"]
+        if var.get("optional"):
+            continue
+        if not os.environ.get(name):
+            missing.append(name)
+    if missing:
+        log(f"缺少环境变量：{', '.join(missing)}（在 shell 里 export 之后重跑）", "WARN")
+
+
+def materialize_sample_wiki(dry: bool) -> None:
+    wiki_root = os.environ.get("WIKI_ROOT")
+    if not wiki_root:
+        log("未设置 $WIKI_ROOT，跳过 sample-wiki 落盘", "WARN")
+        return
+    src = REPO_ROOT / "profiles" / "yuanli-full" / "sample-wiki"
+    dst = Path(os.path.expanduser(wiki_root))
+    if dst.exists() and any(dst.iterdir()):
+        log(f"WIKI_ROOT 非空：{dst}，跳过（避免覆盖已有 Wiki）", "WARN")
+        return
+    if dry:
+        log(f"cp -r {src} {dst}", "DRY")
+        return
+    shutil.copytree(src, dst)
+    log(f"sample Wiki → {dst}", "OK")
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description="安装 os-yuanli profile 到 ~/.claude/skills/")
+    parser.add_argument("--profile", required=True, help="lite / engineer / content / yuanli-full / governance / lark-ops")
+    parser.add_argument("--force", action="store_true", help="覆盖已存在的 skill")
+    parser.add_argument("--dry-run", action="store_true", help="只打印，不执行")
+    parser.add_argument("--materialize-sample-wiki", action="store_true", help="yuanli-full 档：把 sample-wiki 落到 $WIKI_ROOT")
+    args = parser.parse_args()
+
+    profile = load_profile(args.profile)
+    log(f"安装 profile: {profile['name']} (version {profile.get('version', '?')})", "INFO")
+    log(f"还原度估计：{profile.get('restorability_vs_author', 'N/A')}", "INFO")
+
+    ensure_dir(SKILLS_TARGET, args.dry_run)
+
+    if profile.get("includes", {}).get("kernel", True):
+        install_kernel(args.dry_run, args.force)
+
+    for name in profile.get("includes", {}).get("satellites", []) or []:
+        install_satellite(name, args.dry_run, args.force)
+
+    for entry in profile.get("external_skills") or []:
+        install_external(entry, args.dry_run, args.force)
+
+    check_env(profile)
+
+    if args.materialize_sample_wiki and profile["name"] == "yuanli-full":
+        materialize_sample_wiki(args.dry_run)
+
+    log("安装完成。下一步：bin/os-yuanli-doctor 自检", "OK")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

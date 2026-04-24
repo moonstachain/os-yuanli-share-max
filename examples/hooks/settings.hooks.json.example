@@ -1,0 +1,35 @@
+{
+  "_comment": "合并到 ~/.claude/settings.json 的 hooks 段。替换 ${WIKI_ROOT} 和 path_to_script 为实际值。",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ${WIKI_ROOT}/scripts/close_task_hook.py"
+          }
+        ]
+      },
+      {
+        "matcher": "Skill",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/.claude/hooks/log_invocation.py"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/.claude/hooks/detect_rollback.py"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,73 @@
+name: lark-ops
+version: 0.1.0
+description: |
+  飞书运营档：lite + 飞书全家桶 20 个 skill。
+  适合以飞书为中枢做知识管理、会议、任务、多维表、工作流的学员。
+
+extends: lite
+
+external_skills:
+  - name: lark-base
+    source: "local:~/.claude/skills/lark-base"
+  - name: lark-sheets
+    source: "local:~/.claude/skills/lark-sheets"
+  - name: lark-doc
+    source: "local:~/.claude/skills/lark-doc"
+  - name: lark-wiki
+    source: "local:~/.claude/skills/lark-wiki"
+  - name: lark-drive
+    source: "local:~/.claude/skills/lark-drive"
+  - name: lark-mail
+    source: "local:~/.claude/skills/lark-mail"
+  - name: lark-calendar
+    source: "local:~/.claude/skills/lark-calendar"
+  - name: lark-event
+    source: "local:~/.claude/skills/lark-event"
+  - name: lark-task
+    source: "local:~/.claude/skills/lark-task"
+  - name: lark-im
+    source: "local:~/.claude/skills/lark-im"
+  - name: lark-vc
+    source: "local:~/.claude/skills/lark-vc"
+  - name: lark-minutes
+    source: "local:~/.claude/skills/lark-minutes"
+  - name: lark-approval
+    source: "local:~/.claude/skills/lark-approval"
+  - name: lark-contact
+    source: "local:~/.claude/skills/lark-contact"
+  - name: lark-shared
+    source: "local:~/.claude/skills/lark-shared"
+  - name: lark-whiteboard
+    source: "local:~/.claude/skills/lark-whiteboard"
+  - name: lark-openapi-explorer
+    source: "local:~/.claude/skills/lark-openapi-explorer"
+  - name: lark-skill-maker
+    source: "local:~/.claude/skills/lark-skill-maker"
+  - name: lark-workflow-meeting-summary
+    source: "local:~/.claude/skills/lark-workflow-meeting-summary"
+  - name: lark-workflow-standup-report
+    source: "local:~/.claude/skills/lark-workflow-standup-report"
+
+  # 配套 bridge
+  - name: feishu-bitable-bridge
+    source: "local:~/.claude/skills/feishu-bitable-bridge"
+  - name: feishu-dashboard-automator
+    source: "local:~/.claude/skills/feishu-dashboard-automator"
+  - name: feishu-km
+    source: "local:~/.claude/skills/feishu-km"
+  - name: feishu-open-platform
+    source: "local:~/.claude/skills/feishu-open-platform"
+  - name: feishu-reader
+    source: "local:~/.claude/skills/feishu-reader"
+
+env_required:
+  - name: FEISHU_APP_ID
+    description: "飞书自建应用 app_id"
+    optional: false
+  - name: FEISHU_APP_SECRET
+    description: "飞书自建应用 app_secret（建议放 keychain）"
+    optional: false
+
+wiki_required: false
+hooks_example: false
+restorability_vs_author: "~60%（在飞书维度）"

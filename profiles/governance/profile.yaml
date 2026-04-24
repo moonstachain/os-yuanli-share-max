@@ -1,0 +1,38 @@
+name: governance
+version: 0.1.0
+description: |
+  纯治理协作档：lite + 策略治理/进化日志/路由选择 的方法论骨架。
+  适合做 skill 设计、团队协作流程、决策复盘的岗位。
+
+extends: lite
+
+external_skills:
+  - name: skill-creator
+    source: "local:~/.claude/skills/skill-creator"
+  - name: skill-pattern-publisher
+    source: "local:~/.claude/skills/skill-pattern-publisher"
+  - name: skill-audit
+    source: "local:~/.claude/skills/skill-audit"
+  - name: skill-bandit
+    source: "local:~/.claude/skills/skill-bandit"
+  - name: skill-trainer-recursive
+    source: "local:~/.claude/skills/skill-trainer-recursive"
+  - name: self-evolution-max
+    source: "local:~/.claude/skills/self-evolution-max"
+  - name: auto-skill
+    source: "local:~/.claude/skills/auto-skill"
+  - name: auto-skill-extraction-sqlite
+    source: "local:~/.claude/skills/auto-skill-extraction-sqlite"
+  - name: collab-sync
+    source: "local:~/.claude/skills/collab-sync"
+  - name: github-skill-naming-audit
+    source: "local:~/.claude/skills/github-skill-naming-audit"
+  - name: wiki-lint
+    source: "local:~/.claude/skills/wiki-lint"
+
+wiki_required: false
+hooks_example: true
+restorability_vs_author: "~35%"
+notes: |
+  本档聚焦 "skill 如何被孵化 → 审计 → 发布 → 回收"。
+  和 engineer 档互补：engineer 是在写业务代码，governance 是在写"让业务代码被写出来的基础设施"。

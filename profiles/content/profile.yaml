@@ -1,0 +1,44 @@
+name: content
+version: 0.1.0
+description: |
+  内容生产档：lite + 策略/叙事/品质门 + 发布链路。
+  适合做公众号、小红书、知乎、短视频脚本的创作者。
+
+extends: lite
+
+external_skills:
+  # 策略/切角
+  - name: angle-business-model
+    source: "local:~/.claude/skills/angle-business-model"
+  - name: angle-founder-story
+    source: "local:~/.claude/skills/angle-founder-story"
+  - name: angle-qianshenjinshi
+    source: "local:~/.claude/skills/angle-qianshenjinshi"
+  - name: angle-truth-flip
+    source: "local:~/.claude/skills/angle-truth-flip"
+  - name: angle-user-introspection
+    source: "local:~/.claude/skills/angle-user-introspection"
+
+  # 内容引擎
+  - name: ai-viral-content-engine
+    source: "local:~/.claude/skills/ai-viral-content-engine"
+  - name: ai-visual-production-planner
+    source: "local:~/.claude/skills/ai-visual-production-planner"
+  - name: ai-brand-positioning
+    source: "local:~/.claude/skills/ai-brand-positioning"
+
+  # 文风/品质
+  - name: xiaociwei-writing-style
+    source: "local:~/.claude/skills/xiaociwei-writing-style"
+  - name: wechat-writer
+    source: "local:~/.claude/skills/wechat-writer"
+  - name: doc-standard
+    source: "local:~/.claude/skills/doc-standard"
+
+  # 跨平台分发
+  - name: agent-reach
+    source: "local:~/.claude/skills/agent-reach"
+
+wiki_required: false
+hooks_example: true
+restorability_vs_author: "~45%"

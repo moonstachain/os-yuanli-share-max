@@ -1,0 +1,4 @@
+interface:
+  display_name: 既要又要还要再要
+  short_description: 高自治元 skill，强调少打扰、先复用 skill、追求全局最优，并在结束后做简短递归复盘。
+  default_prompt: Use $jiyao-youyao-haiyao-zaiyao to execute this task with minimal interruption, mandatory skill inventory, global optimization, and a short recommendation-only reflection at the end.

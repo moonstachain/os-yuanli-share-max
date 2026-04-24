@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store
+*.bak
+.env
+.env.local
+
+# 临时 workspace（os-yuanli-init 会生成）
+my-workspace/
+workspace/
+staging/
+
+# 学员自己的 Wiki 不该提交回 share 仓库
+sample-wiki-userdata/

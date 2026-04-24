@@ -1,0 +1,7 @@
+interface:
+  display_name: "Routing Playbook"
+  short_description: "Map recurring tasks to stable skill combinations"
+  default_prompt: "Use the Routing Playbook skill to choose the smallest sufficient local skill chain for a recurring task, explain the boundary, and state the minimum verification target."
+
+policy:
+  allow_implicit_invocation: false

@@ -1,0 +1,57 @@
+name: engineer
+version: 0.1.0
+description: |
+  软件开发档：lite + 工程侧能力栈。
+  适合写代码、做架构、跑 TDD、批量修仓的学员。
+
+extends: lite
+
+external_skills:
+  # gstack 家族（本机 ~38 个），以下是推荐核心子集
+  - name: gstack
+    source: "local:~/.claude/skills/gstack"
+    notes: "本机实测：plan → review → ship → canary → retro 的闭环"
+  - name: gstack-autoplan
+    source: "local:~/.claude/skills/gstack-autoplan"
+  - name: gstack-ship
+    source: "local:~/.claude/skills/gstack-ship"
+  - name: gstack-canary
+    source: "local:~/.claude/skills/gstack-canary"
+  - name: gstack-review
+    source: "local:~/.claude/skills/gstack-review"
+  - name: gstack-retro
+    source: "local:~/.claude/skills/gstack-retro"
+
+  # 辅助开发
+  - name: auto-dev
+    source: "local:~/.claude/skills/auto-dev"
+  - name: architecture-diagram
+    source: "local:~/.claude/skills/architecture-diagram"
+  - name: test-driven-development
+    source: "local:~/.claude/skills/test-driven-development"
+  - name: systematic-debugging
+    source: "local:~/.claude/skills/systematic-debugging"
+  - name: using-git-worktrees
+    source: "local:~/.claude/skills/using-git-worktrees"
+  - name: executing-plans
+    source: "local:~/.claude/skills/executing-plans"
+  - name: writing-plans
+    source: "local:~/.claude/skills/writing-plans"
+  - name: receiving-code-review
+    source: "local:~/.claude/skills/receiving-code-review"
+  - name: requesting-code-review
+    source: "local:~/.claude/skills/requesting-code-review"
+  - name: dispatching-parallel-agents
+    source: "local:~/.claude/skills/dispatching-parallel-agents"
+  - name: verification-before-completion
+    source: "local:~/.claude/skills/verification-before-completion"
+
+wiki_required: false
+
+env_required:
+  - name: GITHUB_TOKEN
+    description: "gstack-ship/gstack-canary 需要 gh CLI 已登录"
+    optional: false
+
+hooks_example: true
+restorability_vs_author: "~55%"

@@ -1,0 +1,7 @@
+interface:
+  display_name: "闭环进化"
+  short_description: "Promote repeated patterns into sharper future capability"
+  default_prompt: "Use $closure-evolution to review this completed run and decide what should become a reusable rule, skill update, script, or no change."
+
+policy:
+  allow_implicit_invocation: false

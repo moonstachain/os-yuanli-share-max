@@ -1,0 +1,24 @@
+name: lite
+version: 0.1.0
+description: |
+  最小可用档：仅 kernel + 9 个卫星 skill，不碰外部生态。
+  适合第一次接触 OS-原力、想先跑通三层 gate 的学员。
+
+includes:
+  kernel: true
+  satellites:
+    - skill-router
+    - evidence-gate
+    - intent-grounding
+    - closure-evolution
+    - jiyao-youyao-haiyao-zaiyao
+    - content-quality-gate
+    - evolution-log
+    - routing-playbook
+    - strategy-governor
+
+external_skills: []      # 本档不拉任何仓外 skill
+wiki_required: false
+env_required: []
+hooks_example: false
+restorability_vs_author: "~10%"   # 覆盖 liming 本机工作时行为的比例（诚实标注）

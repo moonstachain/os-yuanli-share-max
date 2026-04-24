@@ -1,0 +1,7 @@
+interface:
+  display_name: "技能路由"
+  short_description: "Choose the best local skill, tool, API, or UI path"
+  default_prompt: "Use $skill-router to pick the smallest, cheapest, and most reliable capability path for this task."
+
+policy:
+  allow_implicit_invocation: false

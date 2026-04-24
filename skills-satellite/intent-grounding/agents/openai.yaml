@@ -1,0 +1,7 @@
+interface:
+  display_name: "意图压实"
+  short_description: "Turn fuzzy asks into concrete goals and done conditions"
+  default_prompt: "Use $intent-grounding to compress this request into a concrete goal, success criteria, artifacts, and boundaries before execution."
+
+policy:
+  allow_implicit_invocation: false

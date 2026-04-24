@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "task": "帮我把客服分诊做成 Dify 工作流，并给出 DSL 和部署路径。",
+      "expected_primary": "dify-workflow-engineer",
+      "acceptable_alternates": ["openai-docs", "playwright"],
+      "reason": "Dify-specific design-to-deploy request."
+    },
+    {
+      "task": "这是一个飞书 wiki 链接，帮我把正文、目录和结论导出来。",
+      "expected_primary": "feishu-reader",
+      "acceptable_alternates": ["playwright"],
+      "reason": "Reading a Feishu link is the direct capability."
+    },
+    {
+      "task": "OpenClaw 在飞书里总是回答偏，我要你帮我重写给 FEISHU-CLAW 的消息。",
+      "expected_primary": "openclaw-feishu-coach",
+      "acceptable_alternates": ["ai-ling-shou-core"],
+      "reason": "Feishu-first OpenClaw coaching."
+    },
+    {
+      "task": "帮我把 GitHub 仓库 inventory 同步到飞书多维表，并设计 webhook 刷新。",
+      "expected_primary": "github-feishu-sync",
+      "acceptable_alternates": ["feishu-reader", "gh-address-comments"],
+      "reason": "Cross-system GitHub-to-Feishu sync workflow."
+    },
+    {
+      "task": "这个站点没有 API，你直接在浏览器里帮我填表并截图结果。",
+      "expected_primary": "playwright",
+      "acceptable_alternates": ["playwright-interactive"],
+      "reason": "UI-only browser automation."
+    },
+    {
+      "task": "我有个重复流程，想知道值不值得做成新 skill。",
+      "expected_primary": "skill-governance",
+      "acceptable_alternates": ["ai-ling-shou-core"],
+      "reason": "Skill ecology and promotion decision."
+    },
+    {
+      "task": "这个需求有好几条实现路径，你先帮我判断该调哪些 skill 和工具。",
+      "expected_primary": "skill-router",
+      "acceptable_alternates": ["ai-ling-shou-core"],
+      "reason": "Explicit routing-first request."
+    },
+    {
+      "task": "我想做这件事，但目标、边界和成功标准都还不清楚，先帮我定形。",
+      "expected_primary": "intent-grounding",
+      "acceptable_alternates": ["ai-metacognitive-core"],
+      "reason": "Intent shaping before execution."
+    },
+    {
+      "task": "先别宣布完成，帮我验一下这个任务有没有真实证据。",
+      "expected_primary": "evidence-gate",
+      "acceptable_alternates": ["closure-evolution"],
+      "reason": "Verification before closure."
+    },
+    {
+      "task": "这个任务做完了，帮我收尾并判断有没有值得沉淀成长期能力的东西。",
+      "expected_primary": "closure-evolution",
+      "acceptable_alternates": ["skill-governance"],
+      "reason": "Closure and promotion review."
+    }
+  ]
+}
