@@ -4,6 +4,7 @@ on:
   push:
     branches: [main]
   pull_request:
+  workflow_dispatch:
 
 jobs:
   validate:
@@ -15,17 +16,54 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install optional deps
-        run: pip install pyyaml
+      - name: Install deps
+        run: pip install -r requirements.txt
 
       - name: Make CLI executable
         run: chmod +x bin/os-yuanli-* tests/golden-path.sh
 
-      - name: Doctor
+      - name: Doctor (repo skill integrity)
         run: python3 bin/os-yuanli-doctor
 
-      - name: Audit repo
+      - name: Audit (protocol compliance)
         run: python3 bin/os-yuanli-audit
 
       - name: Golden-path integration test
         run: bash tests/golden-path.sh
+
+      - name: install-profile dry-run · lite
+        run: python3 bin/os-yuanli-install-profile --profile lite --dry-run
+
+      - name: install-profile dry-run · engineer
+        run: python3 bin/os-yuanli-install-profile --profile engineer --dry-run
+
+      - name: install-profile dry-run · content
+        run: python3 bin/os-yuanli-install-profile --profile content --dry-run
+
+      - name: install-profile dry-run · yuanli-full
+        run: python3 bin/os-yuanli-install-profile --profile yuanli-full --dry-run
+
+      - name: install-profile dry-run · governance
+        run: python3 bin/os-yuanli-install-profile --profile governance --dry-run
+
+      - name: install-profile dry-run · lark-ops
+        run: python3 bin/os-yuanli-install-profile --profile lark-ops --dry-run
+
+      - name: Sensitive path scan
+        run: |
+          # profiles/ 和 examples/ 里有有意的文档性引用（wiki-adapter 的替换规则说明、
+          # hook 脚本的"作者原件"注释等），排除之。needle 用字符串拼接避免自匹配 workflow。
+          needle="/Users/""liming"
+          hits=$(grep -rn "$needle" . \
+            --include="*.md" --include="*.yaml" --include="*.yml" \
+            --include="*.py" --include="*.sh" \
+            --exclude-dir=.git \
+            --exclude-dir=.github \
+            --exclude-dir=profiles \
+            --exclude-dir=examples || true)
+          if [ -n "$hits" ]; then
+            echo "::error::发现未脱敏的作者本机路径"
+            echo "$hits"
+            exit 1
+          fi
+          echo "✓ 无未脱敏路径"
