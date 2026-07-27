@@ -1,3 +1,7 @@
+> ⚠️ **ARCHIVED(2026-07-27 · 仓库治理归档行动)**
+> 归档原因:一次性任务完成/超14天未动。继任仓:`yuanli-os-starter`。
+> 本仓只读保留作历史证据;如需恢复请联系仓主 unarchive。
+
 # OS-原力 · MAX 版（share-max）
 
 > **一套可迁移的「治理OS × 工作OS」** · **kernel + profile** 双层设计
